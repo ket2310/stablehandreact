@@ -1,0 +1,11 @@
+:root {
+  --block-background: rgb(147, 209, 189);
+  --block-font: rgb(6, 53, 35);
+}
+  
+  
+  .MainContainer {
+    Background-color: var(--block-font);
+    color: var(--block-background);
+    font-size: 25px; 
+  } 
