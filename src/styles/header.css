@@ -1,3 +1,9 @@
+:root {
+  --block-background: rgb(147, 209, 189);
+  --block-font: rgb(6, 53, 35);
+
+}
+  
 header {
       display: flex;
       justify-content: space-between;
