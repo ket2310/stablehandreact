@@ -8,7 +8,7 @@ export default function MainContainer(props) {
     const currPg = props.currentPg;
     console.log(currPg)
 
-    const renderNavigaition = () => {
+    const renderNavigation = () => {
         if (currPg === "HomePage") {
             return (
                 <HomePage />
@@ -22,14 +22,14 @@ export default function MainContainer(props) {
     return (
         <div className="MyApp">
             <MyHeader currentPage={props.currPg} handlePageChange={handlePageChange} />            
-            <main class="container container-fluid mt-5">
-                <header class="cd-main-header text-center flex flex-column flex-center">
-                    <h1 class="text-xl">{ props.farmName}</h1><br />
-                    <h2 class="text-xl">{ props.task}</h2>
+            <main className="container container-fluid mt-5">
+                <header className="cd-main-header text-center flex flex-column flex-center">
+                    <h1 className="text-xl">{ props.farmName}</h1><br />
+                    <h2 className="text-xl">{ props.task}</h2>
                 </header>
                 <hr style={{ border: '3px solid rgb(6, 53, 35)', borderradius: '5px'}} />
             </main>
-            {renderNavigaition()}
+            {renderNavigation()}
         </div>
     );
 }

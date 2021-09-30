@@ -4,8 +4,8 @@ import '../styles/header.css'
 
 function MyHeader({ currentPage, handlePageChange }) {
     return (
-        <div class="flex-column justify-space-around">
-            <header className="myHeader" class="display-flex justify-space-between align-center p-2">
+        <div className="flex-column justify-space-around">
+            <header className="myHeader display-flex justify-space-between align-center p-2">
                 <h1 > Stable Hand</h1>
                 <nav>
 
