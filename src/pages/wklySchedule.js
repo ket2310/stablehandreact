@@ -3,10 +3,10 @@ import '../styles/timesheet.css'
 import LessonForm from "../components/lessonForm";
 import { useState } from 'react';
 
-export default function WklySchedule() {   
+export default function WklySchedule() {
     const [anchorPopup, setAnchorPopup] = useState(false)
 
-    const  scheduleAlesson = (event) => {
+    const scheduleAlesson = (event) => {
         //alert('you are here!!!!!!!!!!!!!!')
         event.preventDefault();
 
@@ -14,7 +14,7 @@ export default function WklySchedule() {
         var lessonHour = event.target.id;
         console.log(event)
         console.log(lessonHour)
-        console.log(anchorPopup)        
+        console.log(anchorPopup)
         setAnchorPopup(true);
     }
 
@@ -189,8 +189,9 @@ export default function WklySchedule() {
                         <td><a href="/" id="Su53">Available</a></td>
                     </tr>
                 </tbody>
-            </table>    
-            
+
+            </table>
+
         </div>
 
     );

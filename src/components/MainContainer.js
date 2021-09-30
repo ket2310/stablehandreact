@@ -28,8 +28,9 @@ export default function MainContainer(props) {
                     <h2 className="text-xl">{ props.task}</h2>
                 </header>
                 <hr style={{ border: '3px solid rgb(6, 53, 35)', borderradius: '5px'}} />
-            </main>
-            {renderNavigation()}
+                {renderNavigation()}
+                 </main>
+           
         </div>
     );
 }
