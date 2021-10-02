@@ -4,27 +4,21 @@ import LessonForm from "../components/lessonForm";
 import { useState } from 'react';
 
 export default function WklySchedule() {
-    const [anchorPopup, setAnchorPopup] = useState(false)
+    const [anchorPopup, setShow] = useState(false)
     const [message, setMessage] = useState('')
  
     const scheduleAlesson = (event) => {
         //alert('you are here!!!!!!!!!!!!!!')
         event.preventDefault();
-
-        // get the id of the time block
         var lessonHour = event.target.id;
-        setMessage(lessonHour);
-        console.log(event)
-        console.log(lessonHour)
-        console.log(anchorPopup)
-        setAnchorPopup(true);
+        setMessage("Schedule A lesson");
+        setShow(true);
     }
+
 
     return (
         <div className="app-container">
-            <LessonForm trigger={anchorPopup} setTrigger={setAnchorPopup} 
-                message={message}>
-                    </LessonForm>
+            <LessonForm trigger={anchorPopup} setTrigger={setShow} message={message}></LessonForm>
             <table>
                 <thead>
                     <tr>
@@ -196,7 +190,9 @@ export default function WklySchedule() {
 
             </table>
 
+
         </div>
+
 
     );
 }
