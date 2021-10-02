@@ -1,0 +1,34 @@
+const convertDay = (day) => {
+    let newDay = null;
+
+    switch (day) {
+        case "Tu":
+            newDay = "Tuesday";
+            break;
+
+        case "We":
+            newDay = "Wednesday";
+            break;
+
+        case "Th":
+            newDay = "Thursday";
+            break;
+
+        case "Fr":
+            newDay = "Friday";
+            break;
+
+        case "Sa":
+            newDay = "Sasturday";
+            break;
+
+        case "Su":
+            newDay = "Sunday";
+            break;
+
+    }
+    return newDay;
+}
+
+
+module.exports = convertDay;

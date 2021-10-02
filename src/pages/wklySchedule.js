@@ -2,6 +2,8 @@ import React from "react";
 import '../styles/timesheet.css'
 import LessonForm from "../components/lessonForm";
 import { useState } from 'react';
+import convertDay from "../utils/convertDay";
+import convertHour from "../utils/convertHour";
 
 export default function WklySchedule() {
     const [anchorPopup, setShow] = useState(false)
@@ -10,8 +12,11 @@ export default function WklySchedule() {
     const scheduleAlesson = (event) => {
         //alert('you are here!!!!!!!!!!!!!!')
         event.preventDefault();
-        var lessonHour = event.target.id;
-        setMessage("Schedule A lesson");
+        var tmp = event.target.id;
+        var lessonHour = tmp.substr(2);
+        var lessonDay = tmp.substr(0,2)
+        
+        setMessage(convertDay(lessonDay) + " " + convertHour(lessonHour));
         setShow(true);
     }
 
@@ -34,157 +39,157 @@ export default function WklySchedule() {
                 <tbody>
                     <tr>
                         <td rowSpan={2}><span>09:00</span></td>
-                        <td><a href="/" id="Tu9" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We9" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th9" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr9" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa9" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su9" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu0900" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We0900" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th0900" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr0900" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa0900" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su0900" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/" id="Tu93" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We93" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th93" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr93" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa93" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su93" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu0930" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We0930" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th0930" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr0930" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa0930" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su0930" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
                         <td rowSpan={2}><span>10:00</span></td>
-                        <td><a href="/" id="Tu10" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We10" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th10" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr10" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa10" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su10" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu1000" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We1000" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th1000" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr1000" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa1000" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su1000" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/" id="Tu103" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We103" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th103" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr103" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa103" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su103" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu1030" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We1030" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th1030" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr1030" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa1030" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su1030" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
                         <td rowSpan={2}><span>11:00</span></td>
-                        <td><a href="/" id="Tu11" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We11" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th11" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr11" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa11" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su11" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu1100" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We1100" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th1100" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr1100" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa1100" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su1100" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/" id="Tu113" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We113" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th113" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr113" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa113" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su113" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu1130" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We1130" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th1130" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr1130" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa1130" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su1130" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
                         <td rowSpan={2}><span>12:00</span></td>
-                        <td><a href="/" id="Tu12" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We12" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th12" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr12" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa12" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su12" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu1200" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We1200" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th1200" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr1200" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa1200" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su1200" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/" id="Tu123" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We123" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th123" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr123" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa123" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su123" onClick={scheduleAlesson}>1Available</a></td>
+                        <td><a href="/" id="Tu1230" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We1230" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th1230" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr1230" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa1230" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su1230" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
 
                     <tr>
                         <td rowSpan={2}><span>1:00</span></td>
-                        <td><a href="/" id="Tu1" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We1" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th1" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr1" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa1" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su1" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu0100" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We0100" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th0100" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr0100" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa0100" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su0100" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/" id="Tu13" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We13" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th13" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr13" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa13" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su13" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu0130" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We0130" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th0130" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr0130" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa0130" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su0130" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
                         <td rowSpan={2}><span>2:00</span></td>
-                        <td><a href="/" id="Tu2" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We2" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th2" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr2" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa2" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su2" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu0200" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We0200" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th0200" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr0200" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa0200" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su0200" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/" id="Tu23" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We23" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th23" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr23" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa23" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su23" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu0230" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We0230" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th0230" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr0230" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa0230" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su0230" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
                         <td rowSpan={2}><span>3:00</span></td>
-                        <td><a href="/" id="Tu3" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We3" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th3" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr3" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa3" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su3" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu0300" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We0300" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th0300" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr0300" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa0300" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su0300" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/" id="Tu33" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We33" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th33" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr33" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa33" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su33" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu0330" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We0330" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th0330" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr0330" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa0330" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su0330" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
                         <td rowSpan={2}><span>4:00</span></td>
-                        <td><a href="/" id="Tu4" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We4" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th4" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr4" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa4" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su4" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu0400" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We0400" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th0400" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr0400" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa0400" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su0400" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/" id="Tu43" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We43" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th43" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr43" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa43" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su43" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu0430" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We0430" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th0430" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr0430" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa0430" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su0430" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
                         <td rowSpan={2}><span>5:00</span></td>
-                        <td><a href="/" id="Tu5" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We5" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th5" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr5" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa5" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su5" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu0500" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We0500" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th0500" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr0500" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa0500" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su0500" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/" id="Tu53" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="We53" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Th53" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Fr53" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Sa53" onClick={scheduleAlesson}>Available</a></td>
-                        <td><a href="/" id="Su53" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Tu0530" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="We0530" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Th0530" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Fr0530" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Sa0530" onClick={scheduleAlesson}>Available</a></td>
+                        <td><a href="/" id="Su0530" onClick={scheduleAlesson}>Available</a></td>
                     </tr>
                 </tbody>
 

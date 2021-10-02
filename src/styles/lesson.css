@@ -1,3 +1,10 @@
+:root {
+    --block-background: rgb(147, 209, 189);
+    --block-font: rgb(6, 53, 35);
+  
+  }
+    
+
 .popup {
     position: fixed;
     top: 0;
@@ -14,11 +21,11 @@
     position: relative;
     padding: 32px;
     width: 100%;
-    color: blue;
+    color: var(--block-font);
     max-width: 640px;   
     height: 100%;
     max-height: 710px;
-    background-color: rgb(207, 207, 207);
+    background-color: var(--block-background);
 }
 
 .popup-content .close-btn {
