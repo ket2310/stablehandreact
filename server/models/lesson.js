@@ -1,6 +1,7 @@
-const mongoose = require('mongoose')
-
-const Schema = mongoose.Schema
+const { Schema, model } = require('mongoose');
+const riderSchema = require('./Rider');
+const instructorSchema = require('./Instructor');
+const horseSchema = require('./Horse');
 
 const lessonSchema = new Schema(
     {
@@ -16,24 +17,24 @@ const lessonSchema = new Schema(
             type: Number,
             required: true,
         },
-        rider: {
+        rider:   {
             type: Schema.Types.ObjectId,
-            ref: "Rider",
-        },
-        instructor: {
+            ref: 'Rider'
+          },
+        instructor:   {
             type: Schema.Types.ObjectId,
-            ref: "Instructor",
-        },
-        horse: {
+            ref: 'Instructor'
+          },
+        horse:   {
             type: Schema.Types.ObjectId,
-            ref: "Horse68yujj",
-        },
+            ref: 'Horse'
+          },
     }, {
     timestamps: true,
 }
 );
 
-const Lesson = mongoose.model('Lesson', lessonSchema);
+const Lesson = model('Lesson', lessonSchema);
 
 module.exports = Lesson;
 

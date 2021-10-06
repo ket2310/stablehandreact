@@ -1,6 +1,5 @@
-const mongoose = require('mongoose')
+const { Schema, model } = require('mongoose');
 
-const Schema = mongoose.Schema
 
 const horseSchema = new Schema(
     {
@@ -23,7 +22,7 @@ const horseSchema = new Schema(
 }
 );
 
-const Horse = mongoose.model('Horse', horseSchema);
+const Horse = model('Horse', horseSchema);
 
 module.exports = Horse;
 

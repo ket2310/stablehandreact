@@ -14,29 +14,45 @@ function LessonForm(props) {
     const handleInputChange = (e) => {
         // Getting the value and name of the input which triggered the change
         const { name, value } = e.target;
-
     };
 
     const handleRiderChange = (e) => {
-        e.preventDefault();
+        setRider(e.target.value)
 
     };
 
     const handleInstructorChange = (e) => {
-        e.preventDefault();
+        setInsteructor(e.target.value)
 
     };
 
     const handleHorseChange = (e) => {
-        e.preventDefault();
-
+        setHorse(e.target.value);
+        
     };
 
     const handleFormSubmit = (e) => {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         e.preventDefault();
 
+        // const token = Auth.loggedIn() ? Auth.getToken() : null;
 
+        // if (!token) {
+        //   return false;
+        // }
+    
+    
+        // try {
+        //   const { data } = await bookLesson({
+        //     variables: {          
+        //       book: {...bookToSave}
+        //     },
+        //   });      
+        //   // if book successfully saves to user's account, save book id to state
+        //   setSavedBookIds([...savedBookIds, bookId]);
+        // } catch (err) {
+        //   console.error(err);
+        // }
     };
 
     return (props.trigger) ? (

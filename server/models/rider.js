@@ -1,6 +1,4 @@
-const mongoose = require('mongoose')
-
-const Schema = mongoose.Schema
+const { Schema, model } = require('mongoose');
 
 const riderSchema = new Schema(
     {
@@ -32,7 +30,6 @@ const riderSchema = new Schema(
 }
 );
 
-const Rider = mongoose.model('Rider', riderSchema);
+const Rider = model('Rider', riderSchema);
 
 module.exports = Rider;
-
