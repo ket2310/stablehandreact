@@ -39,16 +39,15 @@ function LessonForm(props) {
 
         // if (!token) {
         //   return false;
-        // }
-    
-    
+        // // }
+       
         // try {
         //   const { data } = await bookLesson({
         //     variables: {          
         //       book: {...bookToSave}
         //     },
         //   });      
-        //   // if book successfully saves to user's account, save book id to state
+          // if book successfully saves to user's account, save book id to state
         //   setSavedBookIds([...savedBookIds, bookId]);
         // } catch (err) {
         //   console.error(err);

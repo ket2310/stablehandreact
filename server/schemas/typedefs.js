@@ -25,6 +25,13 @@ const typeDefs = gql`
         lessonLimit: Int        
     }    
 
+    input HorseData {
+        _id: ID!
+        name: String
+        lessonCount: Int
+        lessonLimit: Int  
+    }
+
     type Auth {
         token: ID!
         user: User
@@ -36,8 +43,21 @@ const typeDefs = gql`
         LastName: String
     }
 
+    input InstructorData {
+        _id: ID!
+        firstName: String
+        LastName: String
+    }
     type Rider {
         _id: ID!
+        firstName: String
+        LastName: String
+        phone: String
+        email: String
+    }
+  
+    input RiderData {
+        _id: ID
         firstName: String
         LastName: String
         phone: String
@@ -55,38 +75,53 @@ const typeDefs = gql`
     }
  
     type Mutation {
-        # Set up mutations to handle creating a profile or logging into a profile and return Auth type
-        addUser(
+        createUser(
             username: String!, 
             email: String!, 
             password: String!
         ): 
         Auth
         login(email: String!, password: String!): Auth
-           
-        addRider(    
+
+        createRider (
             firstName: String!,
             LastName: String!
             phone: String!,
             email: String!
-        ): 
-        addLesson(
-            startTime: String!,
-            endTime: String!,
-            duration: Int!,
-            rider:  Rider!,
-            instructor: Instructor!,
-            horse: Horse!
-        )
-        addInstructor (            
+        ): Rider
+
+        createInstructor(
             firstName: String!,
             LastName: String!
-        )
-        addHorse (
+        ): Instructor
+
+        createHorse(
             name: String
             lessonCount: Int
             lessonLimit: Int            
-        )
+        ): Horse
+
+        bookLesson(
+            startTime: String!,
+            endTime: String!,
+            duration: Int!            
+        ): Lesson
+        
+        
+        addRidertoLesson( 
+            rider: RiderData
+        ): Lesson
+
+        addHorsetoLesson( 
+            horse: HorseData
+        ): Lesson
+
+        addInstructortoLesson( 
+            instructor: InstructorData
+        ): Lesson
+
+
+
     }
 `;
 

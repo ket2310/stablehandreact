@@ -25,6 +25,10 @@ const convertDay = (day) => {
         case "Su":
             newDay = "Sunday";
             break;
+        
+        default:
+            newDay = "Tuesday";
+            break;
 
     }
     return newDay;
