@@ -5,7 +5,13 @@ import { useState } from 'react';
 import convertDay from "../utils/convertDay";
 import convertHour from "../utils/convertHour";
 
+const moment = require('moment');
+
 export default function WklySchedule() {
+    const [weekOf, setWeekOf] = useState( moment().startOf('week').day('Tuesday'));
+    const [weekMsg, setWeeOfMessage] = useState("Lesson Schedule for the week of " + 
+        weekOf.format("dddd, MMMM Do"))
+
     const [anchorPopup, setShow] = useState(false)
     const [message, setMessage] = useState('')
  
@@ -23,7 +29,13 @@ export default function WklySchedule() {
 
     return (
         <div className="app-container">
-            <LessonForm trigger={anchorPopup} setTrigger={setShow} message={message}></LessonForm>
+           <p>{weekMsg}</p>
+            <LessonForm 
+                trigger={anchorPopup} 
+                setTrigger={setShow} 
+                message={message} 
+                weekOf={weekOf}
+                ></LessonForm>
             <table>
                 <thead>
                     <tr>

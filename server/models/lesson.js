@@ -5,6 +5,10 @@ const horseSchema = require('./Horse');
 
 const lessonSchema = new Schema(
     {
+        lessonDate: {
+            type: Date,
+            required: true
+        },
         startTime: {
             type: String,
             required: true,

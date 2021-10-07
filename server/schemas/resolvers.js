@@ -14,17 +14,35 @@ const resolvers = {
       return User.findOne({ _id: userId });
     },
 
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('thoughts');
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    lesson: async (parent, { lessonId }) => {
+      return Lesson.findOne({ _id: lessonId });
+    },
+
+    instructors: async () => {
+      return instructor.find({});
+    },
+
     instructor: async (parent, { instructorId }) => {
       return Instructor.findOne({ _id: instructorId });
+    },
+
+    horses: async () => {
+      return Horse.find({})
     },
 
     horse: async (parent, { horseId }) => {
       return Horse.findOne({ _id: horseId });
     },
-
-
-    lesson: async (parent, { lessonId }) => {
-      return Lesson.findOne({ _id: lessonId });
+    
+    riders: async () => {
+      return Rider.find({})
     },
 
     rider: async (parent, { riderId }) => {
@@ -57,8 +75,8 @@ const resolvers = {
     },
 
 
-    bookLesson: async (parent, { startTime, endTime, duration }) => {
-      const lesson = await Lesson.create({ startTime, endTime, duration });
+    bookLesson: async (parent, { lessonDate, startTime, endTime, duration }) => {
+      const lesson = await Lesson.create({ lessonDate, startTime, endTime, duration });
       return { lesson }
     },
 

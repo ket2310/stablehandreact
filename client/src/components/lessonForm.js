@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "../styles/lesson.css"
+const moment = require('moment');
 
 function LessonForm(props) {
-
-    // Here we set two state variables for firstName and lastName using `useState`
+    const lessonDate = props.weekOf.format("MM/DD/YYYY");
+    const lessonDay = props.lessonDay;
+    console.log(lessonDay)
+    //                         moment().add(10, 'days').calendar();    
     const [startTime, setStartTime] = useState('9:00');
     const [endTime, setEndTime] = useState('10:00');
     const [duration, setDuration] = useState('1');
@@ -28,30 +31,13 @@ function LessonForm(props) {
 
     const handleHorseChange = (e) => {
         setHorse(e.target.value);
-        
+
     };
 
     const handleFormSubmit = (e) => {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         e.preventDefault();
 
-        // const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-        // if (!token) {
-        //   return false;
-        // // }
-       
-        // try {
-        //   const { data } = await bookLesson({
-        //     variables: {          
-        //       book: {...bookToSave}
-        //     },
-        //   });      
-          // if book successfully saves to user's account, save book id to state
-        //   setSavedBookIds([...savedBookIds, bookId]);
-        // } catch (err) {
-        //   console.error(err);
-        // }
     };
 
     return (props.trigger) ? (
@@ -63,6 +49,14 @@ function LessonForm(props) {
                 {props.children}
                 <form className="lessonForm">
                     <div>
+                        <label> Date:</label>&nbsp;
+                        <input
+                            value={lessonDate}
+                            name="startTime"
+                            onChange={handleInputChange}
+                            type="text"
+                            placeholder="Lesson Date"
+                        />
                         <label> Start:</label>&nbsp;
                         <input
                             value={startTime}

@@ -6,7 +6,10 @@
     padding: 1rem;
     justify-content: center;
   }
-  
+  p {
+    font-size:  x-large;    
+    color:  var(--block-font);
+  }
   a {
       font-size: large;
   }

@@ -2,16 +2,19 @@ import { gql } from '@apollo/client';
 
 export const BOOK_LESSON = gql`
 mutation bookLesson (
+    $lessonDate: date,
     $startTime: String!,
     $endTime: String!,
     $duration: Int!,
     ) {
   
     bookLesson ( 
+        lessonDate: $lessonDate,
         startTime: $startTime,
         endTime: $endTime,
         duration: $durationc)
         lesson {
+          lessonDate
             startTime
             endTime
             duration

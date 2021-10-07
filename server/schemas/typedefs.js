@@ -1,8 +1,12 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+
+    scalar date  
+
     type Lesson {
         _id: ID
+        lessonDate: date
         startTime: String
         endTime: String
         duration: Int
@@ -16,6 +20,11 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
+    }
+
+    type Auth {
+        token: ID!
+        user: User
     }
 
     type Horse{
@@ -32,26 +41,21 @@ const typeDefs = gql`
         lessonLimit: Int  
     }
 
-    type Auth {
-        token: ID!
-        user: User
-    }
-
     type Instructor {
         _id: ID!
         firstName: String
-        LastName: String
+        lastName: String
     }
 
     input InstructorData {
         _id: ID!
         firstName: String
-        LastName: String
+        lastName: String
     }
     type Rider {
         _id: ID!
         firstName: String
-        LastName: String
+        lastName: String
         phone: String
         email: String
     }
@@ -59,19 +63,27 @@ const typeDefs = gql`
     input RiderData {
         _id: ID
         firstName: String
-        LastName: String
+        lastName: String
         phone: String
         email: String
     }
     
     type Query {
         users: [User]
-        me: User
         user(_id: ID!): User
-        instructor(_id: ID!): Instructor
-        horse(_id: ID!): Horse
-        rider(_id: ID!): Rider
+        me: User
+                
         lesson(_id: ID!): Lesson        
+
+        instructors: [Instructor]
+        instructor(_id: ID!): Instructor
+
+        horses: [Horse]
+        horse(_id: ID!): Horse
+
+        riders: [Rider]
+        rider(_id: ID!): Rider
+        
     }
  
     type Mutation {
@@ -102,6 +114,7 @@ const typeDefs = gql`
         ): Horse
 
         bookLesson(
+            lessonDate: date!
             startTime: String!,
             endTime: String!,
             duration: Int!            
