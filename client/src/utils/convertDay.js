@@ -19,7 +19,7 @@ const convertDay = (day) => {
             break;
 
         case "Sa":
-            newDay = "Sasturday";
+            newDay = "Saturday";
             break;
 
         case "Su":

@@ -11,6 +11,7 @@ export default function WklySchedule() {
     const [weekOf, setWeekOf] = useState( moment().startOf('week').day('Tuesday'));
     const [weekMsg, setWeeOfMessage] = useState("Lesson Schedule for the week of " + 
         weekOf.format("dddd, MMMM Do"))
+    const [lessonDay, setDay] = useState('Tu');
 
     const [anchorPopup, setShow] = useState(false)
     const [message, setMessage] = useState('')
@@ -20,8 +21,8 @@ export default function WklySchedule() {
         event.preventDefault();
         var tmp = event.target.id;
         var lessonHour = tmp.substr(2);
-        var lessonDay = tmp.substr(0,2)
-        
+        setDay(tmp.substr(0,2));
+
         setMessage(convertDay(lessonDay) + " " + convertHour(lessonHour));
         setShow(true);
     }
@@ -35,6 +36,7 @@ export default function WklySchedule() {
                 setTrigger={setShow} 
                 message={message} 
                 weekOf={weekOf}
+                lessonDay={lessonDay}
                 ></LessonForm>
             <table>
                 <thead>

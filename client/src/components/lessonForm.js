@@ -1,18 +1,27 @@
 import React, { useState } from "react";
 import "../styles/lesson.css"
-const moment = require('moment');
+import findDateOfLesson from "../utils/findDateOfLesson";
+import { useQuery } from '@apollo/client';
+import { QUERY_HORSES, QUERY_RIDERS, QUERY_INSTRUCTORS } from "../utils/queries";
 
 function LessonForm(props) {
     const lessonDate = props.weekOf.format("MM/DD/YYYY");
     const lessonDay = props.lessonDay;
+    console.log(lessonDate)
     console.log(lessonDay)
-    //                         moment().add(10, 'days').calendar();    
+    const bookedDate = findDateOfLesson(lessonDay, lessonDate)
     const [startTime, setStartTime] = useState('9:00');
     const [endTime, setEndTime] = useState('10:00');
     const [duration, setDuration] = useState('1');
     const [rider, setRider] = useState('')
     const [instructor, setInsteructor] = useState('')
     const [horse, setHorse] = useState('')
+
+    const { loadingRiders, data } = useQuery(QUERY_RIDERS);
+
+    // Use optional chaining to check if data exists and if it has a thoughts property. If not, return an empty array to use.
+    const riders = data?.riders || [];
+    console.log(riders)
 
     const handleInputChange = (e) => {
         // Getting the value and name of the input which triggered the change
@@ -51,7 +60,7 @@ function LessonForm(props) {
                     <div>
                         <label> Date:</label>&nbsp;
                         <input
-                            value={lessonDate}
+                            value={bookedDate}
                             name="startTime"
                             onChange={handleInputChange}
                             type="text"
@@ -80,7 +89,7 @@ function LessonForm(props) {
                         <label>Rider: </label>&nbsp;
                         <select onChange={handleRiderChange}>
                             <option value="Rider"> -- Select a Rider -- </option>
-                            {/* {riders.map((rider) => <option value={rider.value}>{rider.label}</option>)} */}
+                            {riders && riders.map((riders) => (<option key={riders._id}>{riders.firstNsme + " " + riders.LastName}</option>))}
                         </select>
                     </div>
                     <div>
