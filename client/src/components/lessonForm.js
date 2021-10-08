@@ -3,12 +3,11 @@ import "../styles/lesson.css"
 import findDateOfLesson from "../utils/findDateOfLesson";
 import { useQuery } from '@apollo/client';
 import { QUERY_HORSES, QUERY_RIDERS, QUERY_INSTRUCTORS } from "../utils/queries";
+import { bookLesson } from "../utils/mutations";
 
 function LessonForm(props) {
     const lessonDate = props.weekOf.format("MM/DD/YYYY");
     const lessonDay = props.lessonDay;
-    console.log(lessonDate)
-    console.log(lessonDay)
     const bookedDate = findDateOfLesson(lessonDay, lessonDate)
     const [startTime, setStartTime] = useState('9:00');
     const [endTime, setEndTime] = useState('10:00');
@@ -22,18 +21,10 @@ function LessonForm(props) {
     const { loading: loadintHorses, data: hdata} = useQuery(QUERY_HORSES)
     
     const riders = rdata?.riders || [];
-    console.log("riders")
-    console.log(rdata)
-
     const instructors = idata?.instructors || [];
-    console.log("instrudtors")
-    console.log(idata)
-
     const horses = hdata?.horses || [];
-    console.log("horses")
-    console.log(hdata)    
-    
 
+    const [bookLesson, { error }] = useMutation(BOOK_LESSON));
     const handleInputChange = (e) => {
         // Getting the value and name of the input which triggered the change
         const { name, value } = e.target;
@@ -41,23 +32,35 @@ function LessonForm(props) {
 
     const handleRiderChange = (e) => {
         setRider(e.target.value)
+        console.log(e.target.value)
 
     };
 
     const handleInstructorChange = (e) => {
         setInsteructor(e.target.value)
-
+        console.log(e.target.value)
     };
 
     const handleHorseChange = (e) => {
         setHorse(e.target.value);
-
+        console.log(e.target.value)
     };
 
     const handleFormSubmit = (e) => {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         e.preventDefault();
-
+        try {
+            const { data } = await bookLesson({
+              variables: {
+                thoughtText,
+                thoughtAuthor: Auth.getProfile().data.username,
+              },
+            });
+      
+            setThoughtText('');
+          } catch (err) {
+            console.error(err);
+          }
     };
 
     return (props.trigger) ? (
