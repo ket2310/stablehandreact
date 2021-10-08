@@ -26,7 +26,7 @@ const resolvers = {
     },
 
     instructors: async () => {
-      return instructor.find({});
+      return Instructor.find({});
     },
 
     instructor: async (parent, { instructorId }) => {

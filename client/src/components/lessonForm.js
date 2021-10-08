@@ -17,11 +17,22 @@ function LessonForm(props) {
     const [instructor, setInsteructor] = useState('')
     const [horse, setHorse] = useState('')
 
-    const { loadingRiders, data } = useQuery(QUERY_RIDERS);
+    const { loading: loadingRiders, data: rdata } = useQuery(QUERY_RIDERS);
+    const { loading: loadingInstructors, data: idata} = useQuery(QUERY_INSTRUCTORS)
+    const { loading: loadintHorses, data: hdata} = useQuery(QUERY_HORSES)
+    
+    const riders = rdata?.riders || [];
+    console.log("riders")
+    console.log(rdata)
 
-    // Use optional chaining to check if data exists and if it has a thoughts property. If not, return an empty array to use.
-    const riders = data?.riders || [];
-    console.log(riders)
+    const instructors = idata?.instructors || [];
+    console.log("instrudtors")
+    console.log(idata)
+
+    const horses = hdata?.horses || [];
+    console.log("horses")
+    console.log(hdata)    
+    
 
     const handleInputChange = (e) => {
         // Getting the value and name of the input which triggered the change
@@ -89,20 +100,22 @@ function LessonForm(props) {
                         <label>Rider: </label>&nbsp;
                         <select onChange={handleRiderChange}>
                             <option value="Rider"> -- Select a Rider -- </option>
-                            {riders && riders.map((riders) => (<option key={riders._id}>{riders.firstNsme + " " + riders.LastName}</option>))}
+                            {riders && riders.map((rider) => 
+                            (<option key={rider._id}>{rider.firstName + " " + rider.lastName}</option>))}
                         </select>
                     </div>
                     <div>
                         <label>Instructor: </label>&nbsp;
                         <select onChange={handleInstructorChange}>
                             <option value="Instructor"> -- Select an Instructor -- </option>
-                            {/* {instructors.map((instructor) => <option value={instructor.value}>{instructor.label}</option>)} */}
+                            {instructors && instructors.map((instructor) => 
+                            (<option key={instructor._id}>{instructor.firstName + " " + instructor.lastName}</option>))}
                         </select></div><div>
                         <label>Horse: </label>&nbsp;
                         <select onChange={handleHorseChange}>
                             <option value="Horse"> -- Select a Horse -- </option>
-                            {/* {horses.map((horse) => <option value={horse.value}>{horse.label}</option>)} */}
-                        </select>
+                            {horses && horses.map((horse) => 
+                            (<option key={horse._id}>{horse.name}</option>))}                        </select>
                     </div>
                     <div> <label>Duration</label>&nbsp;
                         <input

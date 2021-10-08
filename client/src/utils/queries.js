@@ -24,11 +24,12 @@ export const QUERY_INSTRUCTORS = gql`
     `;
 
 export const QUERY_HORSES = gql`
-    query getHorses {
-        _id {
-        name
-        lessonCount
-        lessonLimit
+   query getHorses {
+        horses {
+            _id
+            name
+            lessonCount
+            lessonLimit
         }
     }
 `;
