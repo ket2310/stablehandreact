@@ -57,7 +57,7 @@ function LessonForm(props) {
             const { data } = await bookLesson({
               variables: {
                 lessonDate, startTime, endTime, duration,
-                rider: {...riderToSave}
+                //rider: {...riderToSave}
               },
             });
                   

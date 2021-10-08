@@ -1,8 +1,9 @@
 import React from 'react';
 import HomePage from './HomePage'
 import MyHeader from './MyHeader';
-
+import Auth from '../utils/auth';
 import '../styles/header.css';
+import LoginForm from './LoginForm';
 
 export default function MainContainer(props) {
     const currPg = props.currentPg;
@@ -14,6 +15,13 @@ export default function MainContainer(props) {
                 <HomePage />
             )
         }
+        if (currPg === "Login") {
+            return (
+                <LoginForm />
+            )
+        }
+        if (currPg === "Logout")
+            Auth.logout();
     };
 
     const handlePageChange = (page) => props.setPage(page);

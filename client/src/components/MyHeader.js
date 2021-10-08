@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/header.css'
-
+import Auth from '../utils/auth';
 
 function MyHeader({ currentPage, handlePageChange }) {
     return (
@@ -18,13 +18,20 @@ function MyHeader({ currentPage, handlePageChange }) {
                             >Home
                             </a>
                         </li>&nbsp;  &nbsp;
+                        
                         <li><a href="#dashboard" onClick={() => handlePageChange('Dashboard')}
                                 className={currentPage === 'Dashboard' ? 'nav-link active' : 'nav-link'}
                             >Dashboard</a></li> &nbsp;  &nbsp;
 
-                            <li><a href="#login" onClick={() => handlePageChange('Login')}
+                        {Auth.loggedIn() ? (
+                            <li><a href="#login" onClick={() => handlePageChange('Logout')}
                                 className={currentPage === 'Login' ? 'nav-link active' : 'nav-link'}
-                            >Login</a></li>
+                            >Logout</a></li>
+                        ):(
+                            <li><a href="#login" onClick={() => handlePageChange('Login')}
+                            className={currentPage === 'Login' ? 'nav-link active' : 'nav-link'}
+                        >Login</a></li>
+                        )}
                     </ul>
                 </nav>
             </header>
