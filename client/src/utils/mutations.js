@@ -1,25 +1,19 @@
 import { gql } from '@apollo/client';
 
 export const BOOK_LESSON = gql`
-mutation bookLesson (
-    $lessonDate: date,
-    $startTime: String!,
-    $endTime: String!,
-    $duration: Int!,
-    ) {
-  
-    bookLesson ( 
-        lessonDate: $lessonDate,
-        startTime: $startTime,
-        endTime: $endTime,
-        duration: $durationc)
-        lesson {
-          lessonDate
-            startTime
-            endTime
-            duration
-        }  
+mutation bookLesson ($lessonDate: date!,    $startTime: String!,    $endTime: String!,    $duration: Int!,    ) 
+{
+    bookLesson ( lessonDate: $lessonDate, startTime: $startTime, endTime: $endTime, duration: $duration) 
+    {
+       lessonDate
+        startTime
+        endTime
+        duration
+        rider {firstName lastName}
+        instructor {firstName lastName}
+        horse { name}
     }
+}
 `;
 
 
@@ -36,7 +30,7 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_RIDER_TO_LESSON = gql`
-mutation addRidertoLesson( rider: RiderData!) {
+mutation addRidertoLesson( $rider: RiderData!) {
     addRidertoLesson(rider: $rider) {
         FirstName
         LastName
@@ -48,7 +42,7 @@ mutation addRidertoLesson( rider: RiderData!) {
 `;
 
 export const ADD_HORSE_TO_LESSON = gql`
-mutation addHorsetoLesson( horse: HorseData!) {
+mutation addHorsetoLesson( $horse: HorseData!) {
     addHorsetoLesson(horse: $horse) {
         name
         lessonCount
@@ -58,7 +52,7 @@ mutation addHorsetoLesson( horse: HorseData!) {
 `;
 
 export const ADD_INSTRUCTOR_TO_LESSON = gql`
-mutation addInstructortoLesson( instructor: InstructorData) {
+mutation addInstructortoLesson( $instructor: InstructorData) {
     addInstructortoLesson(instructor: $instructor) {
         FirstName
         LastName        
@@ -80,20 +74,20 @@ mutation createUser($username: String!, $email: String!, $password: String!) {
 
 export const CREATE_HORSE = gql`
 mutation createHorse(
-    name: String
-    lessonCount: Int
-    lessonLimit: Int
-)
-createHorse ( 
-    name: $name,
-    lessonCount: $lesonCount,
-    lessonLimit: $lessonKLimit
-   )
+    $name: String
+    $lessonCount: Int
+    $lessonLimit: Int
+){
+  createHorse ( 
+      name: $name,
+      lessonCount: $lesonCount,
+      lessonLimit: $lessonKLimit
+  ){
     horse {
-        _id
-        name
-        lessonCount
-        lessonLimit
+      _id
+      name
+      lessonCount
+      lessonLimit
     }
   }
 }
@@ -101,19 +95,19 @@ createHorse (
 
 export const CREATE_INSTRUCTOR = gql`
 mutation createInstructor(
-    FirstName: String!
-    LastName: String!
+    $FirstName: String!
+    $LastName: String!
     
-)
-createInstructor ( 
+){
+  createInstructor ( 
     firstname: $FirstName
     lastname: $LastName
-   )
+  ){
     Instructor {
-        _id
-        FirstName
-        LastName
-       }
+      _id
+      FirstName
+      LastName
+    }
   }
 }
 `;

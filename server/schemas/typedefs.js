@@ -10,9 +10,9 @@ const typeDefs = gql`
         startTime: String
         endTime: String
         duration: Int
-        rider:  Rider
-        instructor: Instructor
-        horse: Horse
+        rider:  Rider!
+        instructor: Instructor!
+        horse: Horse!
     }
 
     type User {

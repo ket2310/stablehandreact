@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import "../styles/lesson.css"
 import findDateOfLesson from "../utils/findDateOfLesson";
+import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import { QUERY_HORSES, QUERY_RIDERS, QUERY_INSTRUCTORS } from "../utils/queries";
-import { bookLesson } from "../utils/mutations";
+import { BOOK_LESSON } from "../utils/mutations";
+
+const moment = require ('moment');
 
 function LessonForm(props) {
-    const lessonDate = props.weekOf.format("MM/DD/YYYY");
+    const weekOfDate = props.weekOf.format("MM/DD/YYYY");
     const lessonDay = props.lessonDay;
-    const bookedDate = findDateOfLesson(lessonDay, lessonDate)
+    const bookedDate = findDateOfLesson(lessonDay, weekOfDate)
+    const [lessonDate, setLessonDate] = useState(moment())
     const [startTime, setStartTime] = useState('9:00');
     const [endTime, setEndTime] = useState('10:00');
-    const [duration, setDuration] = useState('1');
+    const [duration, setDuration] = useState(1);
     const [rider, setRider] = useState('')
     const [instructor, setInsteructor] = useState('')
     const [horse, setHorse] = useState('')
@@ -24,7 +28,7 @@ function LessonForm(props) {
     const instructors = idata?.instructors || [];
     const horses = hdata?.horses || [];
 
-    const [bookLesson, { error }] = useMutation(BOOK_LESSON));
+    const [bookLesson, { error }] = useMutation(BOOK_LESSON);
     const handleInputChange = (e) => {
         // Getting the value and name of the input which triggered the change
         const { name, value } = e.target;
@@ -46,18 +50,17 @@ function LessonForm(props) {
         console.log(e.target.value)
     };
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit =  async (e) => {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         e.preventDefault();
         try {
             const { data } = await bookLesson({
               variables: {
-                thoughtText,
-                thoughtAuthor: Auth.getProfile().data.username,
+                lessonDate, startTime, endTime, duration,
+                rider: {...riderToSave}
               },
             });
-      
-            setThoughtText('');
+                  
           } catch (err) {
             console.error(err);
           }
@@ -122,14 +125,15 @@ function LessonForm(props) {
                     </div>
                     <div> <label>Duration</label>&nbsp;
                         <input
-                            value={duration}
+                            value={parseInt( duration)}
                             name="duration"
                             onChange={handleInputChange}
                             type="text"
                             placeholder="Length"
                         />
                     </div>
-                    <button type="button" id="bookTime" onClick={handleFormSubmit}>
+                    <button type="button" id="bookTime" onClick={handleFormSubmit(rider._id,
+                        instructor._id, horse._id)}>
                         Submit
                     </button>
                 </form>
