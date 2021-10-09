@@ -36,7 +36,7 @@ function LessonForm(props) {
 
     const handleRiderChange = (e) => {
         setRider(e.target.value)
-        console.log(e.target.value)
+        console.log(rider)
 
     };
 
@@ -50,14 +50,20 @@ function LessonForm(props) {
         console.log(e.target.value)
     };
 
-    const handleFormSubmit = async (idRider, idInstructor, idHorse) => {
-        const objRider = riders.find((rider) => rider._id === idRider);
-        const objInstructor = instructors.find((instructor) => instructor._id === idInstructor);
-        const objHorse = horses.find((horse) => horse._id === idHorse);
-
+    const handleFormSubmit = async () => {
         console.log(riders)
-        console.log(idRider)
+        console.log(instructors)
+        console.log(horses)
+
+        const objRider = riders.find({"_id" : rider});
+        const objInstructor = instructors.find((instructor) => instructor._id === instructor);
+        const objHorse = horses.find((horse) => horse._id === horse);
+
         console.log(objRider)
+        console.log(objInstructor)
+        console.log(objHorse)
+
+
         try {
             const { data } = await bookLesson({
                 variables: {
@@ -113,7 +119,7 @@ function LessonForm(props) {
                         <select onChange={handleRiderChange}>
                             <option value="Rider"> -- Select a Rider -- </option>
                             {riders && riders.map((rider) =>
-                                (<option key={rider._id}>{rider.firstName + " " + rider.lastName}</option>))}
+                                (<option value={rider._id} key={rider._id}>{rider.firstName + " " + rider.lastName}</option>))}
                         </select>
                     </div>
                     <div>
@@ -121,13 +127,13 @@ function LessonForm(props) {
                         <select onChange={handleInstructorChange}>
                             <option value="Instructor"> -- Select an Instructor -- </option>
                             {instructors && instructors.map((instructor) =>
-                                (<option key={instructor._id}>{instructor.firstName + " " + instructor.lastName}</option>))}
+                                (<option value={instructor._id} key={instructor._id}>{instructor.firstName + " " + instructor.lastName}</option>))}
                         </select></div><div>
                         <label>Horse: </label>&nbsp;
                         <select onChange={handleHorseChange}>
                             <option value="Horse"> -- Select a Horse -- </option>
                             {horses && horses.map((horse) =>
-                                (<option key={horse._id}>{horse.name}</option>))}                        </select>
+                                (<option value={horse._id} key={horse._id}>{horse.name}</option>))}                        </select>
                     </div>
                     <div> <label>Duration</label>&nbsp;
                         <input
@@ -139,7 +145,7 @@ function LessonForm(props) {
                         />
                     </div>
                     <button type="button" id="bookTime"
-                        onClick={() => handleFormSubmit(rider._id, instructor._id, horse._id)}>
+                        onClick={() => handleFormSubmit()}>
                         Submit
                     </button>
                 </form>
