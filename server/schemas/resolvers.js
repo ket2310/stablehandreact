@@ -81,7 +81,10 @@ const resolvers = {
 
 
     bookLesson: async (parent, { lessonDate, startTime, endTime, duration }) => {
+      console.log( lessonDate, startTime, endTime, duration)
       const lesson = await Lesson.create({ lessonDate, startTime, endTime, duration });
+      console.log('hwllo.........')
+      console.log(lesson )
       return { lesson }
     },
 
@@ -107,6 +110,7 @@ const resolvers = {
 
 
     addRidertoLesson: async (parent, { lessonId, rider }) => {
+      console.log(lessonId + "\n" +rider)
       return Lesson.findOneAndUpdate(
         { _id: lessonId },
         { $set: { rider: rider } },

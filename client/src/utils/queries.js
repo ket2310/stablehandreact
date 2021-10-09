@@ -33,3 +33,17 @@ export const QUERY_HORSES = gql`
         }
     }
 `;
+
+
+export const QUERY_LESSON = gql`
+   query getLesson($lessonId: ID!){
+         lesson {
+            _id
+            lessonDate
+            startTime
+            endTime
+            duration
+         }
+        
+    }
+`;

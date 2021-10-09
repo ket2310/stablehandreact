@@ -8,10 +8,7 @@ mutation bookLesson ($lessonDate: date!,    $startTime: String!,    $endTime: St
        lessonDate
         startTime
         endTime
-        duration
-        rider {firstName lastName}
-        instructor {firstName lastName}
-        horse { name}
+        duration    
     }
 }
 `;
@@ -31,31 +28,38 @@ export const LOGIN_USER = gql`
 
 export const ADD_RIDER_TO_LESSON = gql`
 mutation addRidertoLesson( $rider: RiderData!) {
-    addRidertoLesson(rider: $rider) {
-        FirstName
-        LastName
+    addRidertoLesson(rider: $rider)  {
+    
+      rider {
+        firstName
+        lastName
         phone
         email
+      }
     }
-}
+  }
 
 `;
 
 export const ADD_HORSE_TO_LESSON = gql`
 mutation addHorsetoLesson( $horse: HorseData!) {
     addHorsetoLesson(horse: $horse) {
+      horse {
         name
         lessonCount
         lessonLimit
+      }
     }
-}
+  }
 `;
 
 export const ADD_INSTRUCTOR_TO_LESSON = gql`
 mutation addInstructortoLesson( $instructor: InstructorData) {
     addInstructortoLesson(instructor: $instructor) {
-        FirstName
-        LastName        
+      instructor {
+        firstName
+        lastName        
+      }
     }
 }
 `;

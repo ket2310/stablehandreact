@@ -4,7 +4,8 @@ import findDateOfLesson from "../utils/findDateOfLesson";
 import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import { QUERY_HORSES, QUERY_RIDERS, QUERY_INSTRUCTORS } from "../utils/queries";
-import { BOOK_LESSON } from "../utils/mutations";
+import { BOOK_LESSON, ADD_HORSE_TO_LESSON, ADD_RIDER_TO_LESSON, ADD_INSTRUCTOR_TO_LESSON } from "../utils/mutations";
+
 
 const moment = require('moment');
 
@@ -29,6 +30,10 @@ function LessonForm(props) {
     const horses = hdata?.horses || [];
 
     const [bookLesson, { error }] = useMutation(BOOK_LESSON);
+    const [addRider, { errorR }] = useMutation(ADD_RIDER_TO_LESSON);
+    const [addHorse, { errorH }] = useMutation(ADD_HORSE_TO_LESSON);
+    const [addInstructor, { errorI }] = useMutation(ADD_INSTRUCTOR_TO_LESSON);
+
     const handleInputChange = (e) => {
         // Getting the value and name of the input which triggered the change
         const { name, value } = e.target;
@@ -55,9 +60,9 @@ function LessonForm(props) {
         console.log(instructors)
         console.log(horses)
 
-        const objRider = riders.find((rider) => rider._id === rider);
-        const objInstructor = instructors.find((instructor) => instructor._id === instructor);
-        const objHorse = horses.find((horse) => horse._id === horse);
+        const objRider = riders.find((r) => r._id === rider);
+        const objInstructor = instructors.find((i) => i._id === instructor);
+        const objHorse = horses.find((h) => h._id === horse);
 
         console.log(objRider)
         console.log(objInstructor)
@@ -67,17 +72,57 @@ function LessonForm(props) {
         try {
             const { data } = await bookLesson({
                 variables: {
-                    lessonDate, startTime, endTime, duration,
-                    rider: { ...objRider },
-                    instructor: { ...objInstructor },
-                    horse: { ...objHorse },
+                    lessonDate: lessonDate,
+                    startTime: startTime,
+                    endTime: endTime,
+                    duration: duration
+                },
+            });
+            console.log(endTime)
+            console.log(data)
+
+        } catch (err) {
+            console.error(err);
+        }
+        lessonR(objRider);
+        lessonI(objInstructor);
+        lessonH(objHorse);
+    };
+
+    const lessonR = async (oRider) => {
+        try {
+            const { data } = await addRider({
+                variables: {
+                    rider: { ...oRider }
+                },
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    const lessonI = async (OInstructor) => {
+        const { data } = await addInstructor({
+            variables: {
+                instructor: { ...OInstructor }
+            },
+        });
+    }
+
+    const lessonH = async (oHorse) => {
+        try {
+            const { data } = await addHorse({
+                variables: {
+                    horse: { ...oHorse }
                 },
             });
 
         } catch (err) {
             console.error(err);
         }
+        props.setTrigger(false)
     }
+    
     return (props.trigger) ? (
         <div className="popup">
             <div className="popup-content">
