@@ -10,7 +10,7 @@ export default function MainContainer(props) {
     console.log(currPg)
 
     const renderNavigation = () => {
-        if (currPg === "HomePage") {
+        if (currPg === "HomePage" && Auth.loggedIn()) {
             return (
                 <HomePage />
             )

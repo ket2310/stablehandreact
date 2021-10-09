@@ -34,19 +34,24 @@ const resolvers = {
     },
 
     horses: async () => {
-      return Horse.find({})
+      return await Horse.find({})
     },
 
     horse: async (parent, { horseId }) => {
-      return Horse.findOne({ _id: horseId });
+      return await Horse.findOne({ _id: horseId });
     },
-    
+
     riders: async () => {
-      return Rider.find({})
+      return await Rider.find({})
     },
 
     rider: async (parent, { riderId }) => {
-      return Rider.findOne({ _id: riderId });
+      console.log("finding rider")
+      const foundUser = await Rider.findOne({ _id: riderId })
+      console.log(foundUser)
+      if (foundUser) throw new Error('Email is already in use')
+
+      return foundUser;
     },
   },
 

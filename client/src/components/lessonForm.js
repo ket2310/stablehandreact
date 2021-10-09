@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_HORSES, QUERY_RIDERS, QUERY_INSTRUCTORS } from "../utils/queries";
 import { BOOK_LESSON } from "../utils/mutations";
 
-const moment = require ('moment');
+const moment = require('moment');
 
 function LessonForm(props) {
     const weekOfDate = props.weekOf.format("MM/DD/YYYY");
@@ -21,9 +21,9 @@ function LessonForm(props) {
     const [horse, setHorse] = useState('')
 
     const { loading: loadingRiders, data: rdata } = useQuery(QUERY_RIDERS);
-    const { loading: loadingInstructors, data: idata} = useQuery(QUERY_INSTRUCTORS)
-    const { loading: loadintHorses, data: hdata} = useQuery(QUERY_HORSES)
-    
+    const { loading: loadingInstructors, data: idata } = useQuery(QUERY_INSTRUCTORS)
+    const { loading: loadintHorses, data: hdata } = useQuery(QUERY_HORSES)
+
     const riders = rdata?.riders || [];
     const instructors = idata?.instructors || [];
     const horses = hdata?.horses || [];
@@ -50,22 +50,28 @@ function LessonForm(props) {
         console.log(e.target.value)
     };
 
-    const handleFormSubmit =  async (e) => {
-        // Preventing the default behavior of the form submit (which is to refresh the page)
-        e.preventDefault();
+    const handleFormSubmit = async (idRider, idInstructor, idHorse) => {
+        const objRider = riders.find((rider) => rider._id === idRider);
+        const objInstructor = instructors.find((instructor) => instructor._id === idInstructor);
+        const objHorse = horses.find((horse) => horse._id === idHorse);
+
+        console.log(riders)
+        console.log(idRider)
+        console.log(objRider)
         try {
             const { data } = await bookLesson({
-              variables: {
-                lessonDate, startTime, endTime, duration,
-                //rider: {...riderToSave}
-              },
+                variables: {
+                    lessonDate, startTime, endTime, duration,
+                    rider: { ...objRider },
+                    instructor: { ...objInstructor },
+                    horse: { ...objHorse },
+                },
             });
-                  
-          } catch (err) {
-            console.error(err);
-          }
-    };
 
+        } catch (err) {
+            console.error(err);
+        }
+    }
     return (props.trigger) ? (
         <div className="popup">
             <div className="popup-content">
@@ -106,34 +112,34 @@ function LessonForm(props) {
                         <label>Rider: </label>&nbsp;
                         <select onChange={handleRiderChange}>
                             <option value="Rider"> -- Select a Rider -- </option>
-                            {riders && riders.map((rider) => 
-                            (<option key={rider._id}>{rider.firstName + " " + rider.lastName}</option>))}
+                            {riders && riders.map((rider) =>
+                                (<option key={rider._id}>{rider.firstName + " " + rider.lastName}</option>))}
                         </select>
                     </div>
                     <div>
                         <label>Instructor: </label>&nbsp;
                         <select onChange={handleInstructorChange}>
                             <option value="Instructor"> -- Select an Instructor -- </option>
-                            {instructors && instructors.map((instructor) => 
-                            (<option key={instructor._id}>{instructor.firstName + " " + instructor.lastName}</option>))}
+                            {instructors && instructors.map((instructor) =>
+                                (<option key={instructor._id}>{instructor.firstName + " " + instructor.lastName}</option>))}
                         </select></div><div>
                         <label>Horse: </label>&nbsp;
                         <select onChange={handleHorseChange}>
                             <option value="Horse"> -- Select a Horse -- </option>
-                            {horses && horses.map((horse) => 
-                            (<option key={horse._id}>{horse.name}</option>))}                        </select>
+                            {horses && horses.map((horse) =>
+                                (<option key={horse._id}>{horse.name}</option>))}                        </select>
                     </div>
                     <div> <label>Duration</label>&nbsp;
                         <input
-                            value={parseInt( duration)}
+                            value={parseInt(duration)}
                             name="duration"
                             onChange={handleInputChange}
                             type="text"
                             placeholder="Length"
                         />
                     </div>
-                    <button type="button" id="bookTime" onClick={handleFormSubmit(rider._id,
-                        instructor._id, horse._id)}>
+                    <button type="button" id="bookTime"
+                        onClick={() => handleFormSubmit(rider._id, instructor._id, horse._id)}>
                         Submit
                     </button>
                 </form>
