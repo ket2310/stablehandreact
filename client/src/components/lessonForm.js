@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import { QUERY_HORSES, QUERY_RIDERS, QUERY_INSTRUCTORS } from "../utils/queries";
 import { BOOK_LESSON } from "../utils/mutations";
+import mongo from 'mongodb'
 
 const moment = require('moment');
 
@@ -55,7 +56,7 @@ function LessonForm(props) {
         console.log(instructors)
         console.log(horses)
 
-        const objRider = riders.find({"_id" : rider});
+        const objRider = riders.find({"_id" : mongo.ObjectID(rider)});
         const objInstructor = instructors.find((instructor) => instructor._id === instructor);
         const objHorse = horses.find((horse) => horse._id === horse);
 
